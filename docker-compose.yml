@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+
+  mariadb:
+    image: mariadb:10.5
+    container_name: mariadb-10.5
+    restart: always
+    ports:
+      # port 3306 is the default port for mariadb, forwarded to 8889 on the local machine
+      - 8889:3306
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+
+  php-fpm:
+    image: bitnami/php-fpm:7.4
+    container_name: php-fpm-7.4
+    ports:
+      - 9000:9000
+    volumes:
+      - ${WWW_DOCUMENT_ROOT}:/app
+
+  nginx:
+    image: bitnami/nginx:1.20
+    container_name: nginx-1.20
+    restart: always
+    ports:
+      - 8080:8080
+    volumes:
+      - ./nginx/logs:/opt/bitnami/nginx/logs/
+      - ./nginx/server-blocks/default.conf:/opt/bitnami/nginx/conf/server_blocks/default.conf:ro
+      - ${WWW_DOCUMENT_ROOT}:/app
+    depends_on:
+      - mariadb
+      - php-fpm
+    links:
+      - php-fpm
