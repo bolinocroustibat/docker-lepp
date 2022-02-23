@@ -10,7 +10,7 @@ services:
       # port 3306 is the default port for mariadb, forwarded to 8889 on the local machine
       - 8889:3306
     volumes:
-      - ./mysql:/var/lib/mysql
+      - ./mysql/:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} # The root password variable will only be used when creating a database. It won't change the root password of an existing one.
 
@@ -21,7 +21,7 @@ services:
     ports:
       - 9000:9000
     volumes:
-      - ${WWW_DOCUMENT_ROOT}:/app
+      - ${WWW_DOCUMENT_ROOT}/:/app
 
   nginx:
     image: bitnami/nginx:1.20
@@ -32,7 +32,7 @@ services:
     volumes:
       - ./nginx/logs:/opt/bitnami/nginx/logs/
       - ./nginx/server-blocks/default.conf:/opt/bitnami/nginx/conf/server_blocks/default.conf:ro
-      - ${WWW_DOCUMENT_ROOT}:/app
+      - ${WWW_DOCUMENT_ROOT}/:/app
     depends_on:
       - mariadb
       - php-fpm
