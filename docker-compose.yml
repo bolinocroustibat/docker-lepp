@@ -4,7 +4,7 @@ services:
 
   mariadb:
     image: mariadb:10.5
-    container_name: mariadb-10.5
+    container_name: mariadb
     restart: unless-stopped
     ports:
       # port 3306 is the default port for mariadb, forwarded to 8889 on the local machine
@@ -16,7 +16,7 @@ services:
 
   php-fpm:
     image: bitnami/php-fpm:7.4
-    container_name: phpfpm-7.4
+    container_name: phpfpm
     restart: unless-stopped
     ports:
       - 9000:9000
@@ -25,7 +25,7 @@ services:
 
   nginx:
     image: bitnami/nginx:1.20
-    container_name: nginx-1.20
+    container_name: nginx
     restart: always
     ports:
       - 8080:8080
