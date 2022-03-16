@@ -1,4 +1,5 @@
 mysql/
+postgresql/
 nginx/logs/*
 postgresql/
 

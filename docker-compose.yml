@@ -2,17 +2,19 @@ version: "3"
 
 services:
 
-  mariadb:
-    image: mariadb:10.5
-    container_name: mariadb
+  postgres:
+    image: postgres:14.2-alpine
+    container_name: postgres
     restart: unless-stopped
     ports:
-      # port 3306 is the default port for mariadb, forwarded to 8889 on the local machine
-      - 8889:3306
+      - "5432:5432"
     volumes:
-      - ./mysql/:/var/lib/mysql
+      - ./postgresql:/var/lib/postgresql/data
     environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} # The root password variable will only be used when creating a database. It won't change the root password of an existing one.
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=${POSTGRES_DB}
+      - PGDATA=/var/lib/postgresql/data/pgdata # specify the location of the database body to avoid postgresql to create data in the default location where it already exists
 
   php-fpm:
     image: php:7.4-fpm-alpine
@@ -34,5 +36,5 @@ services:
       - ./nginx/server-blocks/default.conf:/opt/bitnami/nginx/conf/server_blocks/default.conf:ro
       - ${WWW_DOCUMENT_ROOT}/:/app
     depends_on:
-      - mariadb
+      - postgres
       - php-fpm
