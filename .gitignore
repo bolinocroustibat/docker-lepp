@@ -1,5 +1,6 @@
 mysql/
 nginx/logs/*
+postgresql/
 
 # Direnv
 .envrc

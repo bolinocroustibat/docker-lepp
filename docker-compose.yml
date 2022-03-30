@@ -15,7 +15,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} # The root password variable will only be used when creating a database. It won't change the root password of an existing one.
 
   php-fpm:
-    image: bitnami/php-fpm:7.4
+    image: php:7.4-fpm-alpine
     container_name: phpfpm
     restart: unless-stopped
     ports:
