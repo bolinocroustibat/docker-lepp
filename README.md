@@ -1,9 +1,9 @@
 # LEPP ((Linux) + (E)nginx  + PostgreSQL + PHP) Docker stack for local web development
 
 A docker-compose stack for local web development, which includes:
-- Nginx 1.20
-- PostgreSQL 14.2
-- PHP 7.4
+- Nginx 1.22.1
+- PostgreSQL 15.1
+- PHP 8.0
 
 There is also a LEMP (Nginx + MariaDB + PHP) Docker stack available [on this repo](https://github.com/bolinocroustibat/docker-lemp).
 
@@ -12,6 +12,11 @@ There is also a LEMP (Nginx + MariaDB + PHP) Docker stack available [on this rep
 ## How to run
 
 - Install Docker
+
+- Export env variable `WWW_DOCUMENT_ROOT` to point to your project root directory:
+```sh
+export WWW_DOCUMENT_ROOT="/var/www/html"
+```
 
 - Export env variable `POSTGRES_DB` for defining your default PostgreSQL database:
 ```sh

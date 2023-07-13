@@ -3,7 +3,7 @@ version: "3"
 services:
 
   postgres:
-    image: postgres:14.2-alpine
+    image: postgres:15.1-alpine
     container_name: postgres
     restart: unless-stopped
     ports:
@@ -17,7 +17,7 @@ services:
       - PGDATA=/var/lib/postgresql/data/pgdata # specify the location of the database body to avoid postgresql to create data in the default location where it already exists
 
   php-fpm:
-    image: php:7.4-fpm-alpine
+    image: php:8.0.5-fpm-alpine
     container_name: phpfpm
     restart: unless-stopped
     ports:
@@ -26,7 +26,7 @@ services:
       - ${WWW_DOCUMENT_ROOT}/:/app
 
   nginx:
-    image: bitnami/nginx:1.20
+    image: nginx:1.22.1-alpine
     container_name: nginx
     restart: always
     ports:
