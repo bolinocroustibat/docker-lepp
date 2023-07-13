@@ -3,5 +3,9 @@ postgresql/
 nginx/logs/*
 postgresql/
 
+# VScode
+.vscode/
+
 # Direnv
 .envrc
+.env
