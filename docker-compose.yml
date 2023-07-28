@@ -2,20 +2,6 @@ version: "3"
 
 services:
 
-  postgres:
-    image: postgres:15.1-alpine
-    container_name: postgres
-    restart: unless-stopped
-    ports:
-      - "5432:5432"
-    volumes:
-      - ./postgresql:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_HOST_AUTH_METHOD=trust # no password
-      - POSTGRES_DB=${POSTGRES_DB}
-      - PGDATA=/var/lib/postgresql/data/pgdata # specify the location of the database body to avoid postgresql to create data in the default location where it already exists
-
   php-fpm:
     image: php:8.2.7-fpm-alpine
     container_name: phpfpm
@@ -36,5 +22,4 @@ services:
       - ./nginx/server-blocks/default.conf:/opt/bitnami/nginx/conf/server_blocks/default.conf:ro
       - ${WWW_DOCUMENT_ROOT}/:/app
     depends_on:
-      - postgres
       - php-fpm
