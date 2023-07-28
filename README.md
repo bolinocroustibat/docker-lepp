@@ -25,7 +25,7 @@ export POSTGRES_DB="postgres"
 
 - Start Docker compose:
 ```ssh
-docker-compose up -d
+docker compose up -d
 ```
 
 - Access the website at document root on the URL `http://localhost:8080/` or `http://127.0.0.1:8080/` (both work).
