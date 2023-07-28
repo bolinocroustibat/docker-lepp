@@ -17,7 +17,7 @@ services:
       - PGDATA=/var/lib/postgresql/data/pgdata # specify the location of the database body to avoid postgresql to create data in the default location where it already exists
 
   php-fpm:
-    image: php:8.0.5-fpm-alpine
+    image: php:8.2-fpm-alpine
     container_name: phpfpm
     restart: unless-stopped
     ports:
