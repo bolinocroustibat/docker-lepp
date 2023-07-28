@@ -3,7 +3,7 @@
 A docker-compose stack for local web development, which includes:
 - Nginx 1.22.1
 - PostgreSQL 15.1
-- PHP 8.2
+- PHP 8.2.7
 
 There is also a LEMP (Nginx + MariaDB + PHP) Docker stack available [on this repo](https://github.com/bolinocroustibat/docker-lemp).
 
